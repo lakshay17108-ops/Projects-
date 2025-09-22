@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine Forever?</title>
+    <style>
+        body {
+            background: rgb(248, 187, 197);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        #proposalBox {
+            background: #fff0f6;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            padding: 40px 30px 30px 30px;
+            text-align: center;
+            min-width: 320px;
+            position: relative;
+        }
+        #proposalBox h2 {
+            color: #d72660;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: #d72660;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            margin: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #a91d4a;
+        }
+        #heart {
+            font-size: 3em;
+            color: #d72660;
+            margin-bottom: 10px;
+        }
+        #shareLink {
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: #333;
+        }
+        #shareLink input {
+            width: 80%;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="proposalBox">
+        <h2 id="question">Will you be mine? 💖</h2>
+        <div id="buttons" style="position:relative; height:60px; display: flex; justify-content: center; align-items: center;">
+            <button class="btn" id="yesBtn">Yes</button>
+            <button class="btn" id="noBtn" style="position:relative;">No</button>
+        </div>
+    <div id="result" style="display:none; position:relative;"></div>
+    <!-- Party popper container -->
+    <div id="poppers" style="pointer-events:none; position:fixed; left:0; top:0; width:100vw; height:100vh; z-index:9999;"></div>
+    <audio id="popperSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae5e2.mp3"></audio>
+    <audio id="popupSound" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c6b6b6b2.mp3"></audio>
+        <div id="shareLink" style="display:none;">
+            <!-- Share link removed as per new requirements -->
+        </div>
+    </div>
+    <style>
+        #heart {
+            font-size: 3em;
+            color: #d72660;
+            margin-bottom: 10px;
+        }
+        #ring {
+            font-size: 2.5em;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        .panda-img {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            left: -40px;
+            bottom: -40px;
+            z-index: 10;
+        }
+        #resultBox {
+            border: 3px solid #d72660;
+            border-radius: 18px;
+            padding: 30px 20px 20px 20px;
+            background: #fff0f6;
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const result = document.getElementById('result');
+        const question = document.getElementById('question');
+        const buttons = document.getElementById('buttons');
+    let noClickCount = 0;
+    const maxNoTries = 3; // Number of times to jumble before removing
+    const noMessages = ["Think again", "Do you not love me?"];
+    const noMsgDiv = document.createElement('div');
+    noMsgDiv.style.color = '#d72660';
+    noMsgDiv.style.fontWeight = 'bold';
+    noMsgDiv.style.marginTop = '10px';
+    buttons.parentNode.insertBefore(noMsgDiv, buttons.nextSibling);
+
+
+
+        // Helper to create party popper burst
+        function burstPoppers() {
+            const poppers = document.getElementById('poppers');
+            poppers.innerHTML = '';
+            for (let i = 0; i < 40; i++) {
+                const pop = document.createElement('div');
+                pop.style.position = 'absolute';
+                pop.style.width = '12px';
+                pop.style.height = '12px';
+                pop.style.borderRadius = '50%';
+                pop.style.background = `hsl(${Math.random()*360},90%,60%)`;
+                pop.style.left = '50vw';
+                pop.style.top = '60vh';
+                pop.style.opacity = 1;
+                pop.style.transition = 'all 1.2s cubic-bezier(.17,.67,.83,.67)';
+                poppers.appendChild(pop);
+                setTimeout(() => {
+                    pop.style.left = (50 + (Math.random()-0.5)*60) + 'vw';
+                    pop.style.top = (60 + (Math.random()-0.7)*50) + 'vh';
+                    pop.style.opacity = 0;
+                }, 10);
+            }
+            setTimeout(() => { poppers.innerHTML = ''; }, 1400);
+            // Play popper sound
+            document.getElementById('popperSound').play();
+        }
+
+        // Helper to create fireworks (crackers)
+        function showFireworks() {
+            const poppers = document.getElementById('poppers');
+            for (let f = 0; f < 5; f++) {
+                setTimeout(() => {
+                    for (let i = 0; i < 24; i++) {
+                        const fire = document.createElement('div');
+                        fire.style.position = 'absolute';
+                        fire.style.width = '8px';
+                        fire.style.height = '8px';
+                        fire.style.borderRadius = '50%';
+                        fire.style.background = `hsl(${Math.random()*360},90%,60%)`;
+                        fire.style.left = (10 + Math.random()*80) + 'vw';
+                        fire.style.top = (20 + Math.random()*30) + 'vh';
+                        fire.style.opacity = 1;
+                        fire.style.transition = 'all 1.5s cubic-bezier(.17,.67,.83,.67)';
+                        poppers.appendChild(fire);
+                        setTimeout(() => {
+                            fire.style.transform = `translate(${(Math.random()-0.5)*200}px, ${(Math.random()-0.5)*200}px)`;
+                            fire.style.opacity = 0;
+                        }, 10);
+                    }
+                }, f*350);
+            }
+            setTimeout(() => { poppers.innerHTML = ''; }, 2500);
+        }
+
+        yesBtn.onclick = function() {
+            question.innerHTML = "";
+            buttons.style.display = 'none';
+            result.style.display = 'block';
+            document.getElementById('popupSound').play();
+            burstPoppers();
+            showFireworks();
+            result.innerHTML = `
+                <div id="resultBox">
+                    <div id="heart">❤️</div>
+                    <div id="ring">💍</div>
+                    <div style="font-size:1.3em; color:#d72660;">I love you too!</div>
+                </div>
+            `;
+        };
+
+        noBtn.onclick = function() {
+            noClickCount++;
+            if (noClickCount <= noMessages.length) {
+                noMsgDiv.textContent = noMessages[noClickCount - 1];
+            } else {
+                noMsgDiv.textContent = '';
+            }
+            if (noClickCount < maxNoTries) {
+                // Jumble the No button within the button row
+                const parent = buttons;
+                const maxX = parent.offsetWidth - noBtn.offsetWidth;
+                const maxY = parent.offsetHeight - noBtn.offsetHeight;
+                const randX = Math.random() * maxX;
+                const randY = Math.random() * maxY;
+                noBtn.style.position = 'relative';
+                noBtn.style.left = randX + 'px';
+                noBtn.style.top = randY + 'px';
+            } else {
+                // Remove the No button after several tries
+                noBtn.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
