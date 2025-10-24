@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>lakshay — Portfolio</title>
+    <meta name="description" content="Portfolio of lakshay — web and AI developer">
+
+    <style>
+        /* Basic / beginner-friendly stylesheet */
+        :root{
+            --bg: #f6f8fb;
+            --card: #ffffff;
+            --text: #102a43;
+            --muted: #486581;
+            --accent: #2b8ae6;
+            --radius:8px;
+            --max-width:900px;
+        }
+        *{box-sizing:border-box}
+        body{margin:0;font-family:Arial, Helvetica, sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+        a{color:var(--accent)}
+
+        .container{max-width:var(--max-width);margin:24px auto;padding:16px}
+        .skip-link{position:absolute;left:-999px}
+        .skip-link:focus{left:8px;top:8px;background:#fff;padding:6px;border-radius:4px}
+
+        header{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+        .brand{display:flex;align-items:center;gap:10px}
+        .logo{width:44px;height:44px;border-radius:8px;background:var(--accent);display:inline-block}
+        nav ul{display:flex;gap:12px;list-style:none;padding:0;margin:0}
+        nav a{padding:6px 8px;border-radius:6px;color:var(--muted);text-decoration:none}
+        nav a:hover{background:#e6f2ff;color:var(--accent)}
+
+        .hero{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 2px 6px rgba(16,42,67,0.06);margin-bottom:16px}
+        .hero h1{margin:0;font-size:1.8rem}
+        .hero p{color:var(--muted);margin-top:8px}
+
+        section{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:0 2px 6px rgba(16,42,67,0.04);margin-bottom:14px}
+        section h2{margin-top:0}
+
+        #about{display:flex;flex-direction:column;gap:12px}
+        #about img{width:120px;height:120px;border-radius:8px;object-fit:cover}
+
+    .projects{display:flex;flex-direction:column;gap:10px}
+    article, .info-box{padding:12px;border-radius:8px;border:1px solid #eef3f8;background:var(--card)}
+    article h3{margin:0 0 6px}
+    article p{margin:0;color:var(--muted)}
+
+        table{width:100%;border-collapse:collapse}
+        th,td{padding:8px;border:1px solid #eef3f8;text-align:left}
+        th{background:#f0f6ff;color:var(--muted)}
+
+        form{display:flex;flex-direction:column;gap:8px}
+        input,textarea{padding:8px;border-radius:6px;border:1px solid #dfeaf6}
+        button{background:var(--accent);color:#fff;border:none;padding:10px;border-radius:6px;cursor:pointer}
+
+        footer{text-align:center;color:var(--muted);font-size:0.9rem;margin-top:8px}
+
+        @media(min-width:700px){
+            #about{flex-direction:row;align-items:center}
+            .hero{display:flex;justify-content:space-between;align-items:center}
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container">
+        <header>
+            <div class="topbar">
+                <div class="brand">
+                    <span class="logo" aria-hidden="true"></span>
+                    <div>
+                        <div style="font-weight:700">lakshay</div>
+                        <div style="font-size:0.85rem;color:var(--muted)">Web & AI Developer</div>
+                    </div>
+                </div>
+                <nav aria-label="Primary navigation">
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <section class="hero" id="main-content">
+                <div>
+                    <h1>Hi — I'm lakshay</h1>
+                     
+                <!-- quick info moved to semantic aside below -->
+                       <aside class="info-box" aria-hidden="false">
+                           <h3>Quick Info</h3>
+                           <p style="margin:6px 0">Location: Sohna, Haryana, India • Available for freelance & collaboration</p>
+                           <p style="margin:6px 0">Email: <a href="mailto:lakshay17108@gmail.com">lakshay17108@gmail.com</a></p>
+                       </aside>
+            </section>
+        </header>
+
+        <main>
+            <section id="about">
+                <div>
+                    <h2>About Me</h2>
+                    <p>I am a aspiring software developer with experience in web and AI projects. I enjoy learning new technologies and collaborating on creative solutions.</p>
+                </div>
+                <img src="WhatsApp Image 2025-10-01 at 11.47.24_b83ee56a.jpg" alt="Portrait of lakshay smiling">
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="projects">
+                    <article>
+                        <h3>AI Chatbot</h3>
+                        <p>A chatbot that analyzes financial data and provides concise insights and comparisons , using different AI tools and connecting different data sources.</p>
+                    </article>
+                    <article>
+                        <h3>Portfolio Website</h3>
+                        <p>This one-page responsive portfolio site built with semantic HTML and accessible design.</p>
+                    </article>
+                    <article>
+                        <h3>Proposal Site</h3>
+                        <p>A simple proposal web page and demonstration of design + content structure.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <table>
+                    <thead>
+                        <tr><th>Category</th><th>Skills & Tools</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Languages</td><td>HTML, CSS, JavaScript</td></tr>
+                        <tr><td>Tools</td><td>Git, GitHub, VS Code, AI tools </td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="contact">
+                <h2>Contact Me</h2>
+                <form action="#" method="post" aria-label="Contact form">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" required placeholder="Your name">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required placeholder="you@example.com">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
+                    <div style="display:flex;gap:10px;align-items:center">
+                        <button type="submit">Send Message</button>
+                        <span style="color:var(--muted);font-size:0.9rem">Or email me at <a href="mailto:lakshay17108@gmail.com">lakshay17108@gmail.com</a></span>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 lakshay. Built with coffee and code.</p>
+        </footer>
+    </div>
+</body>
+</html>
